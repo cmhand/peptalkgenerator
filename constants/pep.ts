@@ -6,6 +6,7 @@ export const first = [
     "Check it:",
     "Just saying...",
     "Superstar,",
+    "Rockstar,",
     "Tiger,",
     "Self,",
     "Know this:",
