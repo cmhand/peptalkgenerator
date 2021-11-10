@@ -47,7 +47,7 @@ export const third = [
     "rains magic,",
     "deserves the Nobel Price,",
     "raises the roof,",
-    "breeds miracles",
+    "breeds miracles,",
     "is paying off big time,",
     "shows mad skills,",
     "just shimmers,",
