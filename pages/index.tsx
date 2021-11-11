@@ -2,25 +2,14 @@ import type { NextPage } from 'next'
 import { useState } from 'react';
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { first, second, third, fourth } from '../constants/pep';
+import { PepService } from '../services/pep';
 
 const Home: NextPage = () => {
   
-  const generatePep = () => {
-    let pieces = [
-      first[Math.floor(Math.random() * first.length)],
-      second[Math.floor(Math.random() * second.length)],
-      third[Math.floor(Math.random() * third.length)],
-      fourth[Math.floor(Math.random() * fourth.length)],
-    ];
-
-    return pieces.join(' ');
-  }
-
-  const [phrase, setPhrase] = useState(generatePep());
+  const [phrase, setPhrase] = useState(PepService.generatePep());
 
   const setPep = () => {
-    setPhrase(generatePep());
+    setPhrase(PepService.generatePep());
   };
 
   return (
