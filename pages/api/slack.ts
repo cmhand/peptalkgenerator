@@ -22,9 +22,10 @@ export default async function handler(
 
     try {
         const response = await fetch('https://slack.com/api/chat.postMessage',{
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            method: 'POST',
             headers: {
-            'Authorization': `Bearer ${process.env.SLACK_BOT_TOKEN}`,
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.SLACK_BOT_TOKEN}`,
             },
             body: JSON.stringify(message)
         })
