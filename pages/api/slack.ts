@@ -13,9 +13,7 @@ export default function handler(
   
   let payload = req.body;
 
-  console.log(payload);
-
-  let channel = payload.event.item.channel;
+  let channel = payload.channel_id;
 
   fetch('https://slack.com/api/chat.postMessage',{
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
