@@ -11,17 +11,24 @@ export default async function handler(
 
     let channel = payload.channel_id;
 
-    await fetch('https://slack.com/api/chat.postMessage',{
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-        'Authorization': `Bearer ${process.env.SLACK_BOT_TOKEN}`,
-        },
-        body: JSON.stringify({
-            "text": PepService.generatePep(),
-            "channel": channel
+    try {
+        const response = await fetch('https://slack.com/api/chat.postMessage',{
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+            'Authorization': `Bearer ${process.env.SLACK_BOT_TOKEN}`,
+            },
+            body: JSON.stringify({
+                "text": PepService.generatePep(),
+                "channel": channel
+            })
         })
-    })
-    .then(response => response.json());
+        .then(response => response.json());
+
+        console.log(response);
+    } catch (e) {
+        console.log('Error');
+        console.log(e);
+    }
 
     res.status(200).send('');
 }
