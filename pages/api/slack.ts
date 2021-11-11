@@ -1,17 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PepService } from '../../services/pep';
 
-type PepTalk = {
-  message: string
-}
-
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<PepTalk>
+  res: NextApiResponse<string>
 ) {
-  res.status(200);
+  res.status(200).send('Ok');
   
   let payload = req.body;
+
+  console.log(payload);
 
   let channel = payload.channel_id;
 
