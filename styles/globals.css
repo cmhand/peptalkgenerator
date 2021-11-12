@@ -14,3 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  box-shadow: none;
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
