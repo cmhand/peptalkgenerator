@@ -34,7 +34,6 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        
         <div className={styles.pep} onClick={copyPep}>
           <em className={styles.copy}>{isCopied ? 'Copied to clipboard' : 'Click to copy'}</em>
           <h1 className={styles.title}>
