@@ -2,56 +2,36 @@ import type { NextPage } from 'next'
 import { useState, useEffect } from 'react';
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { first, second, third, fourth } from '../constants/pep';
+import { PepService } from '../services/pep';
+import { historyMaxSize } from '../constants/pep';
 
 const Home: NextPage = () => {
-  const historyMaxSize = 100;
 
-  const generatePep = (): string => {
-    let pieces = [
-      first[Math.floor(Math.random() * first.length)],
-      second[Math.floor(Math.random() * second.length)],
-      third[Math.floor(Math.random() * third.length)],
-      fourth[Math.floor(Math.random() * fourth.length)],
-    ];
-    
-    return pieces.join(' ');
-  }
-
-  const getPepHistory = (): string[] => {
-    const peps: string | null = localStorage.getItem('pepHistory');
-    return peps ? JSON.parse(peps) : [];
-  }
-
-  const [index, setIndex] = useState(getPepHistory().length);
-  const [phrase, setPhrase] = useState(generatePep());
+  const [index, setIndex] = useState(PepService.getPepHistory().length);
+  const [phrase, setPhrase] = useState(PepService.generatePep());
 
   useEffect(() => {
-    let pepHistory = getPepHistory();
-    if (index >= pepHistory.length) {
-      addPepToHistory(phrase, pepHistory);
+    let history = PepService.getPepHistory();
+    if (index >= history.length) {
+      if (history.length >= historyMaxSize) {
+        history = history.slice(1);
+        setIndex(index - 1);
+      }
+      PepService.addPepToHistory(phrase, history);
     }
   }, [phrase]);
 
-  const addPepToHistory = (pep: string, history: string[]): void => {
-    if (history.length >= historyMaxSize) {
-      history = history.slice(1);
-      setIndex(index - 1);
-    }
-    localStorage.setItem('pepHistory', JSON.stringify([...history, pep]));
-  }
+  const setPep = (): void => {
+    setPhrase(PepService.generatePep());
+    setIndex(PepService.getPepHistory().length);
+  };
 
   const viewHistory = (direction: string = 'back'): void => {
     const pepIndex = direction === 'forward' ? index + 1 : index - 1;
-    const peps = getPepHistory();
+    const peps = PepService.getPepHistory();
     setPhrase(peps[pepIndex]);
     setIndex(pepIndex);
   }
-  
-  const setPep = (): void => {
-    setPhrase(generatePep());
-    setIndex(getPepHistory().length);
-  };
 
   return (
     <div className={styles.container}>
@@ -72,7 +52,7 @@ const Home: NextPage = () => {
           <button className={styles.generate} onClick={setPep}>
             Generate Pep Talk
           </button>
-          <button disabled={index >= getPepHistory().length - 1} className={styles.generate} onClick={() => viewHistory('forward')}>
+          <button disabled={index >= PepService.getPepHistory().length - 1} className={styles.generate} onClick={() => viewHistory('forward')}>
             &#8594;
           </button>
         </div>
