@@ -3,7 +3,9 @@
 }
 
 .centered {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
   margin-top: 5em;
 }
 
@@ -24,7 +26,7 @@
 }
 
 .main {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px); /* 100vh minus header height */
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -127,6 +129,17 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.pageTitle {
+  padding: 0;
+  margin: 0;
+}
+
+.pageLinks {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 @media (max-width: 600px) {

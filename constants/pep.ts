@@ -84,3 +84,5 @@ export const fourth = [
     "according to CNN.",
     "so get used to it.",
 ];
+
+export const historyMaxSize = 100;
