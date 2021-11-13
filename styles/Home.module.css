@@ -131,6 +131,17 @@
   margin-left: 0.5rem;
 }
 
+.pageTitle {
+  padding: 0;
+  margin: 0;
+}
+
+.pageLinks {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

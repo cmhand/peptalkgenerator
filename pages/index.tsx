@@ -1,12 +1,14 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react';
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import { PepService } from '../services/pep';
 import { historyMaxSize } from '../constants/pep';
+import Header from '../components/Header';
 
 const Home: NextPage = () => {
-
+  const pageLinks = [ { title: 'View History', route: '/history'} ];
   const [index, setIndex] = useState(PepService.getPepHistory().length);
   const [phrase, setPhrase] = useState(PepService.generatePep());
 
@@ -40,6 +42,8 @@ const Home: NextPage = () => {
         <meta name="description" content="Give someone a pep talk" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Header pageTitle={'Pep Talk Generator'} links={pageLinks} />
 
       <main className={styles.main}>
         <h1 className={styles.title}>
