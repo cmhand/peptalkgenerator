@@ -26,7 +26,7 @@
 }
 
 .main {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px); /* 100vh minus header height */
   padding: 4rem 0;
   flex: 1;
   display: flex;
